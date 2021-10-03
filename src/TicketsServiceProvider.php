@@ -5,7 +5,7 @@ namespace JacobHyde\Tickets;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class OrdersServiceProvider extends ServiceProvider
+class TicketsServiceProvider extends ServiceProvider
 {
     private $_packageTag = 'tickets';
 
