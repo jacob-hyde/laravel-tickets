@@ -4,7 +4,6 @@ return [
     'user' => \App\Models\User::class,
     'from_address' => '',
     'from_name' => '',
-    'ticket_create_user_guard' => 'api',
     'routes' => [
         'api' => [
             'prefix' => 'api/v1',
@@ -15,5 +14,9 @@ return [
             'prefix' => '',
             'middleware' => ['auth:web'],
         ],
+    ],
+    'created' => [
+        'email' => null,
+        'user_guard' => 'api',
     ],
 ];

@@ -26,9 +26,12 @@ class SupportMailer
         $this->fromName = config('tickets.from_name');
     }
 
-    public function sendTicketInformation(Ticket $ticket)
+    public function sendTicketInformation(Ticket $ticket, $toSupport = false)
     {
         $this->to = $ticket->email;
+        if ($toSupport) {
+            $this->to = config('tickets.to_address');
+        }
         $this->subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
         $this->view = 'tickets::emails.ticket_info';
         $this->data = compact('ticket');

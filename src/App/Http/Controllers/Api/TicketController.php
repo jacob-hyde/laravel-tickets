@@ -24,13 +24,17 @@ class TicketController extends Controller
         $data['status'] = 'Open';
         $data['ticket_id'] = Ticket::count() + 1;
         
-        if (auth(config('tickets.ticket_create_user_guard'))->check()) {
-            $data['user_id'] = auth(config('tickets.ticket_create_user_guard'))->user()->id;
+        if (auth(config('tickets.create.user_guard'))->check()) {
+            $data['user_id'] = auth(config('tickets.create.user_guard'))->user()->id;
         }
         
         $ticket = Ticket::create($data);
 
         $mailer->sendTicketInformation($ticket);
+
+        if (config('tickets.created.email')) {
+            $mailer->sendTicketInformation($ticket, true);
+        }
 
         return response()->json(['success' => true], Response::HTTP_CREATED);
     }
