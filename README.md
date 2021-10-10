@@ -23,11 +23,11 @@ return  [
 	'from_address'  =>  '',
 	'from_name'  =>  '',
 	'routes'  =>  [
-		'api'  =>  [
+        'api'  =>  [
 		    'prefix'  =>  'api/v1',
 		    'middleware'  =>  [],
-		    ],
-	    'web'  =>  [
+        ],
+        'web'  =>  [
 		    'domain'  =>  'support.example.com',
 		    'prefix'  =>  '',
 		    'middleware'  =>  ['auth:web'],
