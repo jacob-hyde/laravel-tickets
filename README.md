@@ -24,14 +24,14 @@ return  [
 	'from_name'  =>  '',
 	'routes'  =>  [
 		'api'  =>  [
-		'prefix'  =>  'api/v1',
-		'middleware'  =>  [],
-		],
-	'web'  =>  [
-		'domain'  =>  'support.example.com',
-		'prefix'  =>  '',
-		'middleware'  =>  ['auth:web'],
-		],
+		    'prefix'  =>  'api/v1',
+		    'middleware'  =>  [],
+		    ],
+	    'web'  =>  [
+		    'domain'  =>  'support.example.com',
+		    'prefix'  =>  '',
+		    'middleware'  =>  ['auth:web'],
+        ],
 	],
 	'created'  =>  [
 		'email'  =>  null,
