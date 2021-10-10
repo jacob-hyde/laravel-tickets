@@ -2,8 +2,10 @@
 
 namespace JacobHyde\Tickets;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use JacobHyde\Tickets\App\Http\Middleware\SupportOnly;
 
 class TicketsServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,8 @@ class TicketsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRoutes();
+        $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('support', SupportOnly::class);
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/tickets.php' => config_path('tickets.php'),
@@ -37,12 +41,7 @@ class TicketsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(\Spatie\WebhookClient\WebhookClientServiceProvider::class);
-        $this->app->register(\Spatie\StripeWebhooks\StripeWebhooksServiceProvider::class);
         $this->mergeConfigFrom(__DIR__ . '/../config/tickets.php', $this->_packageTag);
-        // $this->app->bind('payment', function ($app) {
-        //     return new Payment();
-        // });
     }
 
     protected function registerRoutes()
