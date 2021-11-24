@@ -18,5 +18,6 @@ return [
     'created' => [
         'email' => null,
         'user_guard' => 'api',
+        'callback' => null,
     ],
 ];
